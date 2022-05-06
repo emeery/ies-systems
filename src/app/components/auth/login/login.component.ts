@@ -11,6 +11,7 @@ import { User } from '../user.model';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   user!: User;
+  loading = false;
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService
@@ -26,10 +27,12 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls }
 
   onLogin() {
+    this.loading = true
     this.user = {username: this.f['username'].value,password:this.f['password'].value}
     this.auth.login(this.user).subscribe(res => {
       console.log(res)
-    })
+
+    },error => { this.loading = false })
   }
 
 }

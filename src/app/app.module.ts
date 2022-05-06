@@ -13,7 +13,10 @@ import { PageStartComponent } from './components/pages/page-start/page-start.com
 import { FormComponent } from './components/pages/form/form.component';
 import { ConversionsComponent } from './components/pages/conversions/conversions.component';
 import { CalculateDateComponent } from './components/pages/calculate-date/calculate-date.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppProgressBarComponent } from './components/shared/app-progress-bar/app-progress-bar.component';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { AppDialogComponent } from './components/shared/app-dialog/app-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     PageStartComponent,
     FormComponent,
     ConversionsComponent,
-    CalculateDateComponent
-
+    CalculateDateComponent,
+    AppProgressBarComponent,
+    AppDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
