@@ -9,25 +9,27 @@ import { User } from '../user.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup
+  form: FormGroup;
+  user!: User;
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService)
-  {
+    private auth: AuthService
+  ) {
     this.form = this.formBuilder.group({
       username: ['',Validators.required],
       password: ['',Validators.required],
     })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get f() { return this.form.controls }
 
   onLogin() {
-    console.log(this.f['username'].value)
-    console.log(this.f['password'].value)
+    this.user = {username: this.f['username'].value,password:this.f['password'].value}
+    this.auth.login(this.user).subscribe(res => {
+      console.log(res)
+    })
   }
 
 }

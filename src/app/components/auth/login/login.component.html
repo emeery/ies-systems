@@ -1,16 +1,38 @@
 <div class="container">
   <div class="child">
-    <h4>Ingresa tus credenciales</h4>
-    <form [formGroup]="form" (submit)="onLogin()" class="custom-form" method="post">
-      <mat-form-field appearance="fill">
-        <mat-label>Usuario</mat-label>
-        <input formControlName="username" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input formControlName="password" matInput />
-      </mat-form-field>
-      <button type="submit" mat-button>Oye</button>
-    </form>
+    <mat-card id="card" style="text-align: center">
+      <mat-card-title> Ingresa tus credenciales </mat-card-title>
+      <br />
+      <mat-card-content>
+        <form
+          [formGroup]="form"
+          (submit)="onLogin()"
+          class="custom-form"
+          method="post"
+        >
+          <mat-form-field appearance="fill">
+            <input
+            formControlName="username"
+            matInput
+            placeholder="Usuario"
+            />
+          </mat-form-field
+          ><br />
+
+          <mat-form-field appearance="fill">
+            <input
+            formControlName="password"
+            matInput
+            placeholder="Contraseña"
+            type="password"
+            />
+          </mat-form-field
+          ><br />
+
+          <button
+          mat-raised-button color="primary">Entrar</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
