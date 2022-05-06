@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="container">
+  <div class="child">
+    <h4>Ingresa tus credenciales</h4>
+    <form [formGroup]="form" (submit)="onLogin()" class="custom-form" method="post">
+      <mat-form-field appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input formControlName="username" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input formControlName="password" matInput />
+      </mat-form-field>
+      <button type="submit" mat-button>Oye</button>
+    </form>
+  </div>
+</div>

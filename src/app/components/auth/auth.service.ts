@@ -1,14 +1,20 @@
-import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { Injectable} from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { User } from './user.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   url = 'https://desa.ies-webcontent.com.mx'
-  constructor() {
+
+  constructor(private http: HttpClient) {
 
   }
-  loginUser(username: string, password: string){
-
+  login (username:string, password:string): Observable<User[]> {
+    const user = {username,password}
+    return this.http.post<User[]>(this.url+'/login',user)
   }
+
+
 }
