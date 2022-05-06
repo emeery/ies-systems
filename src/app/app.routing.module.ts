@@ -8,8 +8,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { PageStartComponent } from './components/pages/page-start/page-start.component';
 
 const rutas: Routes = [
-    {path: '', redirectTo: 'page-start', pathMatch: 'full'},
-    {path: 'page-start', component: PageStartComponent},
+    {path: '', redirectTo: '', pathMatch: 'full'},
+    {path: '', component: PageStartComponent},
     {path: 'login', component: LoginComponent},
     {path: 'welcome', component: WelcomeComponent },
     {path: 'conversions', component: ConversionsComponent },

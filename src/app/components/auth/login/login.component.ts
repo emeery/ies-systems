@@ -28,11 +28,15 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.loading = true
-    this.user = {username: this.f['username'].value,password:this.f['password'].value}
+    this.user = {
+      username: this.f['username'].value,password:this.f['password'].value
+    }
     this.auth.login(this.user).subscribe(res => {
       console.log(res)
-
-    },error => { this.loading = false })
+    },error => {
+      this.loading = false
+      this.form.reset()
+    })
   }
 
 }
