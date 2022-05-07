@@ -1,18 +1,35 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { of, tap, catchError, throwError, BehaviorSubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { User } from './user.model';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  url = 'https://desa.ies-webcontent.com.mx'
-  constructor(private http: HttpClient) {
+  url = 'https://desa.ies-webcontent.com.mx';
+  private authSubject = new Subject<boolean>();
+  private isLoggedIn = false;
 
+  constructor(private http: HttpClient) {}
+
+  getIsLogged() {
+    return this.isLoggedIn
   }
-  login (user: User): Observable<User> {
-    return this.http.post<User>(this.url+'/login',user)
+
+  getAuthListen() {
+    return this.authSubject.asObservable()
   }
 
-
+  login(user: User) {
+    console.log(user)
+    return this.http.post(this.url, user).subscribe((res:any) => {
+      const user = res.data
+      console.log(user)
+    },error => {
+      console.log('errorcayo  ', error)
+      this.authSubject.next(false)
+      console.log(this.authSubject)
+    })
+  }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { User } from '../user.model';
 
@@ -8,10 +9,11 @@ import { User } from '../user.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  form: FormGroup;
+export class LoginComponent implements OnInit, OnDestroy {
   user!: User;
+  form: FormGroup;
   loading = false;
+  private authSubscription: Subscription
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService
@@ -20,23 +22,29 @@ export class LoginComponent implements OnInit {
       username: ['',Validators.required],
       password: ['',Validators.required],
     })
+
+    this.authSubscription = this.auth.getAuthListen()
+    .subscribe(authL=> {
+      setTimeout(() => { // delay con observable
+        this.loading = authL
+      }, 2000);
+    })
+
   }
 
   ngOnInit(): void {}
 
   get f() { return this.form.controls }
 
-  onLogin() {
+  login() {
     this.loading = true
     this.user = {
       username: this.f['username'].value,password:this.f['password'].value
     }
-    this.auth.login(this.user).subscribe(res => {
-      console.log(res)
-    },error => {
-      this.loading = false
-      this.form.reset()
-    })
+    this.auth.login(this.user)
   }
 
+  ngOnDestroy(): void {
+      this.authSubscription.unsubscribe()
+  }
 }
