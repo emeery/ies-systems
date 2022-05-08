@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   logout() {
-    console.log(this.token);
+    this.token = ''
     this.isLoggedIn = false;
     this.authSubject.next(false);
     this.clearStorage();
@@ -76,6 +76,6 @@ export class AuthService {
   }
 
   clearStorage() {
-    localStorage.getItem('token');
+    localStorage.removeItem('token');
   }
 }
