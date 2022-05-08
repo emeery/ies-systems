@@ -7,15 +7,14 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private dialog: MatDialog) {}
+  constructor(private dlg: MatDialog) {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
-        let error
         console.log(err.error)
-        // console.log(!err.error) error = 'El usuario no existe';
-        if(err.error == null) error = 'El usuario no existe'; // mensaje: "El usuario no existe" }
-        this.dialog.open(AppDialogComponent, {data: {message: error} });
+        let error = 'ocurrió un error';
+        if(err.error.mensaje) error = err.error.mensaje; // Object { exito: false, mensaje: "El usuario no existe" }
+        this.dlg.open(AppDialogComponent, {data: {message: error} });
         return throwError(err);
       })
     );

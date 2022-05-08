@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./app-dialog.component.scss']
 })
 export class AppDialogComponent {
-  mensaje = 'ocurrió un error';
+  message = 'ocurrió un error';
   constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string} ) {
     if(!this.data) {console.log('no hay datos')}
   }

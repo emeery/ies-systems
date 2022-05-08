@@ -12,20 +12,21 @@ export class NavbarComponent implements OnInit {
   public isLogged = false
   private authSubscription: Subscription
   constructor(
-    public auth: AuthService,
+    public authService: AuthService,
     public router: Router
   ) {
-    this.authSubscription = this.auth.getAuthListen()
+    this.authSubscription = this.authService.getAuthListen()
     .subscribe(authL=> {
       this.isLogged = authL
     })
   }
 
   ngOnInit(): void {
-    this.isLogged = this.auth.getIsLogged()
-
-
+    this.isLogged = this.authService.getIsLogged()
+    console.log(this.isLogged)
   }
 
-
+  logout() {
+    this.authService.logout()
+  }
 }

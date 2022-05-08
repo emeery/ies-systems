@@ -1,14 +1,29 @@
 
 <mat-toolbar>
-<a class="o" mat-button  routerLink="/">
+<a  mat-button routerLink="/" class="o">
   IES-SYSTEMS
 </a>
   <span class="spacer"></span>
   <ul>
-      <li >
-          <a class="o" *ngIf="router.url == '/'"  mat-button routerLink="/login">
-              INGRESAR
-          </a>
-      </li>
+    <li >
+        <a
+        mat-button
+
+        *ngIf="!isLogged"
+        routerLink="/login"
+        class="o"
+        >
+            INGRESAR
+        </a>
+    </li>
+    <li >
+      <a
+      mat-button
+      *ngIf="isLogged"
+      (click)="logout()"
+      >
+          SALIR
+      </a>
+    </li>
   </ul>
 </mat-toolbar>

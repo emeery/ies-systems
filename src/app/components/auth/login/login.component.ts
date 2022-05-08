@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.form.reset()
     }, 1000);
+    // this.router.navigate(['/welcome'])
   }
 
   ngOnDestroy(): void {

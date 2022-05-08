@@ -6,20 +6,21 @@ import { FormComponent } from './components/pages/form/form.component';
 import { CalculateDateComponent } from './components/pages/calculate-date/calculate-date.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { PageStartComponent } from './components/pages/page-start/page-start.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const rutas: Routes = [
-    {path: '', redirectTo: '', pathMatch: 'full'},
-    {path: '', component: PageStartComponent},
+    {path: '', redirectTo: 'page-start', pathMatch: 'full'},
+    {path: 'page-start', component: PageStartComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'welcome', component: WelcomeComponent },
-    {path: 'conversions', component: ConversionsComponent },
-    {path: 'form', component: FormComponent },
-    {path: 'calculate-date', component: CalculateDateComponent },
-    {path: '**', redirectTo: 'page-start'} //
+    {path: 'welcome', canActivate: [AuthGuard], component: WelcomeComponent },
+    {path: 'conversions', canActivate: [AuthGuard], component: ConversionsComponent },
+    {path: 'form', canActivate: [AuthGuard], component: FormComponent },
+    {path: 'calculate-date',canActivate: [AuthGuard], component: CalculateDateComponent },
+    {path: '**', redirectTo: 'page-start'}
   ];
 @NgModule({
   imports: [RouterModule.forRoot(rutas, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule],
-  providers: []
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}
