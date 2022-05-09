@@ -1,6 +1,10 @@
 
 <mat-toolbar>
-<a  mat-button routerLink="/" class="o">
+<a
+mat-button
+*ngIf="isLogged"
+routerLink="/"
+class="o">
   IES-SYSTEMS
 </a>
   <span class="spacer"></span>
@@ -8,7 +12,6 @@
     <li >
         <a
         mat-button
-
         *ngIf="!isLogged"
         routerLink="/login"
         class="o"
