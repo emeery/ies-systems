@@ -13,8 +13,7 @@ export class WelcomeComponent implements OnInit {
     private dlg: MatDialog
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openInputDialog() {
     this.dlg.open(AppInputDialogComponent)

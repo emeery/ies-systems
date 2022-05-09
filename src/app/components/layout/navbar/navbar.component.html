@@ -10,6 +10,36 @@ class="o">
   <span class="spacer"></span>
   <ul>
     <li >
+      <a
+      mat-button
+      *ngIf="isLogged"
+      routerLink="/form"
+      class="o"
+      >
+          FORMULARIO
+      </a>
+  </li>
+    <li >
+      <a
+      mat-button
+      *ngIf="isLogged"
+      routerLink="/calculate-date"
+      class="o"
+      >
+          FECHA
+      </a>
+  </li>
+    <li >
+      <a
+      mat-button
+      *ngIf="isLogged"
+      routerLink="/conversions"
+      class="o"
+      >
+          CONVERSIONES
+      </a>
+  </li>
+    <li >
         <a
         mat-button
         *ngIf="!isLogged"
