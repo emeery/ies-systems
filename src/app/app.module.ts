@@ -18,6 +18,7 @@ import { AppProgressBarComponent } from './components/shared/app-progress-bar/ap
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { AppErrorDialogComponent } from './components/shared/app-error-dialog/app-error-dialog.component';
 import { AppInputDialogComponent } from './components/shared/app-input-dialog/app-input-dialog.component';
+import { NumbersPipe } from './core/pipes/numbers.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AppInputDialogComponent } from './components/shared/app-input-dialog/ap
     CalculateDateComponent,
     AppProgressBarComponent,
     AppErrorDialogComponent,
-    AppInputDialogComponent
+    AppInputDialogComponent,
+    NumbersPipe
   ],
   imports: [
     BrowserModule,
