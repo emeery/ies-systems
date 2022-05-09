@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AppInputDialogComponent } from '../../shared/app-input-dialog/app-input-dialog.component';
 
 @Component({
   selector: 'app-welcome',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
-
-  constructor() { }
+  name!: string
+  constructor(
+    private dlg: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
 
+  openInputDialog() {
+    this.dlg.open(AppInputDialogComponent)
+    .afterClosed().subscribe(res => {
+      this.name = res.data
+    })
+  }
 }

@@ -10,9 +10,9 @@ import { User } from '../user.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  user!: User;
-  form: FormGroup;
-  loading = false;
+  user!: User
+  form: FormGroup
+  loading = false
   private authSubscription: Subscription
 
   constructor(

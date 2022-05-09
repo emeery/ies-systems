@@ -2,8 +2,8 @@ import { HttpInterceptor,HttpRequest,HttpHandler,HttpErrorResponse } from '@angu
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AppDialogComponent } from 'src/app/components/shared/app-dialog/app-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AppErrorDialogComponent } from 'src/app/components/shared/app-error-dialog/app-error-dialog.component';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -14,7 +14,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         console.log(err.error)
         let error = 'ocurrió un error';
         if(err.error.mensaje) error = err.error.mensaje; // Object { exito: false, mensaje: "El usuario no existe" }
-        this.dlg.open(AppDialogComponent, {data: {message: error} });
+        this.dlg.open(AppErrorDialogComponent, {data: {message: error} });
         return throwError(err);
       })
     );

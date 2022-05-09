@@ -1,0 +1,16 @@
+<form
+          [formGroup]="form"
+          (submit)="confirm()"
+          class="custom-form"
+          method="post"
+        >
+<mat-form-field appearance="fill">
+  <mat-label>Ingresa tu nombre</mat-label>
+  <input formControlName="name" matInput>
+</mat-form-field>
+<br>
+<button mat-flat-button color="primary">Guardar</button>
+<button mat-stroked-button color="primary" mat-dialog-close>Cancelar</button>
+</form>
+
+

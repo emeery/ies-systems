@@ -1,4 +1,12 @@
-<div class="d-md-flex flex-md-column justify-content-md-center align-items-md-center h-25">
+<div
+  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center h-25"
+>
   <h1>BIENVENIDO A MI PORTAL</h1>
-  <button mat-raised-button color="primary">Ingresa tu nombre</button>
+  <button (click)="openInputDialog()" mat-raised-button color="primary">
+    Ingresa tu nombre
+  </button>
+
+  <div *ngIf="name">
+    <h3>El nombre ingresado es: {{ name }}</h3>
+  </div>
 </div>
