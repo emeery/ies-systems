@@ -16,7 +16,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {}
 
   openInputDialog() {
-    this.dlg.open(AppInputDialogComponent)
+    this.dlg.open(AppInputDialogComponent,{disableClose: true})
     .afterClosed().subscribe(res => {
       this.name = res.data
     })

@@ -9,7 +9,7 @@
   <input formControlName="name" matInput>
 </mat-form-field>
 <br>
-<button mat-flat-button color="primary">Guardar</button>
+<button [disabled]="form.invalid" mat-flat-button color="primary">Guardar</button>
 <button mat-stroked-button color="primary" mat-dialog-close>Cancelar</button>
 </form>
 
