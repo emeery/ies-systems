@@ -1,19 +1,26 @@
 <div
-  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center h-25"
+  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center"
 >
-  <h1>CALCULAR FECHA</h1>
+  <div class="m-5">
+    <mat-card>
+      <h1>CALCULAR FECHA</h1>
 
-  <div *ngIf="!date">
-    <mat-form-field>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Ingresa una fecha"
-        (dateChange)="setDate($event.value)"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+      <div *ngIf="!date">
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Ingresa una fecha"
+            (dateChange)="setDate($event.value)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </mat-card>
   </div>
 </div>
 <div

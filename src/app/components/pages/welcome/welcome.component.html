@@ -1,13 +1,17 @@
 <div
-  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center h-25"
+  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center"
 >
-  <h1>BIENVENIDO A MI PORTAL</h1>
-  <h3>Nos podrías indicar tu nombre</h3>
-  <button (click)="openInputDialog()" mat-raised-button color="primary">
-    Ingresa tu nombre
-  </button>
+  <div class="m-5">
+    <mat-card>
+      <h1>BIENVENIDO A MI PORTAL</h1>
+      <h3>Nos podrías indicar tu nombre</h3>
+      <button (click)="openInputDialog()" mat-raised-button color="primary">
+        Ingresa tu nombre
+      </button>
 
-  <div *ngIf="name">
-    <h3>El nombre ingresado es: {{ name  | numbers }}</h3>
+      <div *ngIf="name">
+        <h3>El nombre ingresado es: {{ name | numbers }}</h3>
+      </div>
+    </mat-card>
   </div>
 </div>
