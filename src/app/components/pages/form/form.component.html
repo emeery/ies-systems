@@ -1,1 +1,69 @@
-<p>form works!</p>
+<div
+  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center"
+>
+  <div class="m-5">
+    <mat-card>
+      <h1>FORMULARIO</h1>
+      <form [formGroup]="form" (submit)="send()" method="post">
+        <mat-form-field appearance="fill">
+          <input
+            formControlName="nombres"
+            matInput
+            placeholder="Nombres"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input
+            formControlName="apellidos"
+            matInput
+            placeholder="Apellidos"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input formControlName="fumas" matInput placeholder="Fumas?" />
+        </mat-form-field>
+        <section>
+          <mat-checkbox formControlName="actualmentePracticasLectura">Lees?</mat-checkbox>
+        </section>
+        <div *ngIf="disabled">
+          <div
+            formArrayName="librosLeidosUltimosTresMeses"
+            *ngFor="let item of this.fa?.controls; let i = index"
+          >
+            <tr [formGroupName]="i">
+              <td><input style="background: whitesmoke;" matInput formControlName="book" /></td>
+              <td>
+                <button type="button">X</button>
+              </td>
+            </tr>
+          </div>
+          <mat-form-field *ngIf="!disabled" appearance="fill">
+            <input matInput placeholder="Agrega un libro" autocomplete="off" />
+          </mat-form-field>
+          <button type="button" mat-raised-button (click)="addBook()">
+            Agregar
+          </button>
+        </div>
+        <mat-form-field appearance="fill">
+          <input
+            formControlName="estadoCivil"
+            matInput
+            placeholder="Estado civil"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          mat-flat-button
+          color="primary"
+        >
+          Enviar
+        </button>
+      </form>
+    </mat-card>
+  </div>
+  {{ this.form.value | json }}
+</div>
