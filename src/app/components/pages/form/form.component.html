@@ -12,6 +12,8 @@
             placeholder="Nombres"
             autocomplete="off"
           />
+          <!-- *ngIf = form.controls['nameType']?.errors.required" -->
+          <mat-hint *ngIf="f['nombres'].errors" class="error">Espacios en blanco no permitidos</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <input
@@ -20,6 +22,7 @@
             placeholder="Apellidos"
             autocomplete="off"
           />
+          <mat-hint *ngIf="f['apellidos'].errors" class="error">Espacios en blanco no permitidos</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <input formControlName="fumas" matInput placeholder="Fumas?" />
@@ -46,13 +49,15 @@
             Agregar
           </button>
         </div>
-        <mat-form-field appearance="fill">
-          <input
-            formControlName="estadoCivil"
-            matInput
-            placeholder="Estado civil"
-            autocomplete="off"
-          />
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Asunto</mat-label>
+          <mat-select formControlName="estadoCivil">
+            <mat-option
+              *ngFor="let status of select"
+              value="{{ status.value }}"
+              >{{ status.viewValue  }}</mat-option
+            >
+          </mat-select>
         </mat-form-field>
         <button
           type="submit"
@@ -65,5 +70,6 @@
       </form>
     </mat-card>
   </div>
-  {{ this.form.value | json }}
+  <h4 >{{form.valid === true ? 'Formulario valido' : 'Formulario no valido'}}</h4>
+  <!-- {{ this.form.value | json }} -->
 </div>

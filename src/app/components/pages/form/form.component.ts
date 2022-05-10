@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { UniversalValidators } from 'ngx-validators';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -10,10 +10,15 @@ export class FormComponent implements OnInit {
   form: FormGroup
   formBooks!:FormArray
   disabled = true
+  select = [
+    {value: 'soltero', viewValue: 'soltero'},
+    {value: 'casado', viewValue: 'casado'},
+    {value: 'divorciado', viewValue: 'divorciado'},
+  ];
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      nombres: ['',Validators.required],
-      apellidos: ['',Validators.required],
+      nombres: ['',[Validators.required, Validators.pattern(/^\S*$/)]],
+      apellidos: ['',[Validators.required, Validators.pattern(/^\S*$/)]],
       fumas: ['',Validators.required],
       actualmentePracticasLectura: [true,Validators.required],
       librosLeidosUltimosTresMeses: this.formBuilder.array([this.setBooksArray()]),
@@ -23,6 +28,10 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLecture()
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   generateUniqueId() {
