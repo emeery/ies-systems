@@ -1,8 +1,11 @@
-  // colores
+  // colors
   $do: darkorange;
   $dc: darkcyan;
+  $bl: #004e75; // blue lagoon
 
-  // fuentes
+  // fonts
   @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
-  $bar: 'Barlow',
+  @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+  $bar: 'Barlow';
+  $osw: 'Oswald';
 

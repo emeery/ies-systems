@@ -10,10 +10,11 @@ import { User } from '../user.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  user!: User;
-  form: FormGroup;
-  loading = false;
+  user!: User
+  form: FormGroup
+  loading = false
   private authSubscription: Subscription
+
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService
@@ -24,12 +25,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
 
     this.authSubscription = this.auth.getAuthListen()
-    .subscribe(authL=> {
-      setTimeout(() => { // delay con observable
-        this.loading = authL
-      }, 2000);
+    .subscribe(authL => {
+      this.loading = authL
     })
-
   }
 
   ngOnInit(): void {}
@@ -42,6 +40,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       username: this.f['username'].value,password:this.f['password'].value
     }
     this.auth.login(this.user)
+    setTimeout(() => {
+      this.form.reset()
+    }, 1000);
+    // this.router.navigate(['/welcome'])
   }
 
   ngOnDestroy(): void {

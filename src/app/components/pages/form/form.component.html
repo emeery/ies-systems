@@ -1,1 +1,75 @@
-<p>form works!</p>
+<div
+  class="d-md-flex flex-md-column justify-content-md-center align-items-md-center"
+>
+  <div class="m-5">
+    <mat-card>
+      <h1>FORMULARIO</h1>
+      <form [formGroup]="form" (submit)="send()" method="post">
+        <mat-form-field appearance="fill">
+          <input
+            formControlName="nombres"
+            matInput
+            placeholder="Nombres"
+            autocomplete="off"
+          />
+          <!-- *ngIf = form.controls['nameType']?.errors.required" -->
+          <mat-hint *ngIf="f['nombres'].errors" class="error">Espacios en blanco no permitidos</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input
+            formControlName="apellidos"
+            matInput
+            placeholder="Apellidos"
+            autocomplete="off"
+          />
+          <mat-hint *ngIf="f['apellidos'].errors" class="error">Espacios en blanco no permitidos</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input formControlName="fumas" matInput placeholder="Fumas?" />
+        </mat-form-field>
+        <section>
+          <mat-checkbox formControlName="actualmentePracticasLectura">Lees?</mat-checkbox>
+        </section>
+        <div *ngIf="disabled">
+          <div
+            formArrayName="librosLeidosUltimosTresMeses"
+            *ngFor="let item of this.fa?.controls; let i = index"
+          >
+            <tr [formGroupName]="i">
+              <td><input style="background: whitesmoke;" matInput formControlName="book" /></td>
+              <td>
+                <button type="button">X</button>
+              </td>
+            </tr>
+          </div>
+          <mat-form-field *ngIf="!disabled" appearance="fill">
+            <input matInput placeholder="Libros leidos ultimos 3 meses" autocomplete="off" />
+          </mat-form-field>
+          <button type="button" mat-raised-button (click)="addBook()">
+            Agregar
+          </button>
+        </div>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Asunto</mat-label>
+          <mat-select formControlName="estadoCivil">
+            <mat-option
+              *ngFor="let status of select"
+              value="{{ status.value }}"
+              >{{ status.viewValue  }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          mat-flat-button
+          color="primary"
+        >
+          Enviar
+        </button>
+      </form>
+    </mat-card>
+  </div>
+  <h4 >{{form.valid === true ? 'Formulario valido' : 'Formulario no valido'}}</h4>
+  <!-- {{ this.form.value | json }} -->
+</div>
